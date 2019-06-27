@@ -3,8 +3,7 @@ module.exports = function (app) {
   var mongodb = require('mongodb')
   var databaseUrl = 'frienddb'
   var collections = ['friends']
-  let uri = process.env.MONGODB_URI 
-  // || 'mongodb://localhost:27017/frienddb'
+  let uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/frienddb'
 
   // Use mongojs to hook the database to the db variable
   var db = mongojs(databaseUrl, collections)
@@ -13,9 +12,9 @@ module.exports = function (app) {
   mongodb.MongoClient.connect(uri, function (err, client) {
     if (err) throw err
     console.log(uri)
-    db.on('error', function (error) {
-      console.log('Database Error:', error)
-    })
+    // db.on('error', function (error) {
+    //   console.log('Database Error:', error)
+    // })
     app.get('/api/friends', function (req, res) {
       db.friends.find({}, function (err, data) {
         if (err) {
