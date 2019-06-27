@@ -11,6 +11,7 @@ module.exports = function (app) {
   // This makes sure that any errors are logged if mongodb runs into an issue
   mongodb.MongoClient.connect(uri, function (err, client) {
     if (err) throw err
+    console.log(uri)
     db.on('error', function (error) {
       console.log('Database Error:', error)
     })
