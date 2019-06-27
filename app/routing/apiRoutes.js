@@ -8,10 +8,10 @@ module.exports = function (app) {
   // Use mongojs to hook the database to the db variable
   var db = mongojs(databaseUrl, collections)
 
-  // This makes sure that any errors are logged if mongodb runs into an issue
-  mongodb.MongoClient.connect(uri, function (err, client) {
+  mongodb.MongoClient.connect(uri, {useMongoClient: true}, function (err, client) {
     if (err) throw err
     console.log(uri)
+    // This makes sure that any errors are logged if mongodb runs into an issue
     db.on('error', function (error) {
       console.log('Database Error:', error)
     })
