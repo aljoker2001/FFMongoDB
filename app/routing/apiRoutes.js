@@ -3,7 +3,8 @@ module.exports = function (app) {
   var mongodb = require('mongodb')
   var databaseUrl = 'frienddb'
   var collections = ['friends']
-  let uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/frienddb'
+  let uri = process.env.MONGODB_URI 
+  // || 'mongodb://localhost:27017/frienddb'
 
   // Use mongojs to hook the database to the db variable
   var db = mongojs(databaseUrl, collections)
