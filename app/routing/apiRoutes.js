@@ -12,9 +12,9 @@ module.exports = function (app) {
   mongodb.MongoClient.connect(uri, function (err, client) {
     if (err) throw err
     console.log(uri)
-    // db.on('error', function (error) {
-    //   console.log('Database Error:', error)
-    // })
+    db.on('error', function (error) {
+      console.log('Database Error:', error)
+    })
     app.get('/api/friends', function (req, res) {
       db.friends.find({}, function (err, data) {
         if (err) {
