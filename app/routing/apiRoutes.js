@@ -1,16 +1,16 @@
 module.exports = function (app) {
   var mongojs = require('mongojs')
   var mongodb = require('mongodb')
-  var databaseUrl = 'frienddb'
+  // var databaseUrl = 'frienddb'
   var collections = ['friends']
-  let uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/frienddb'
+  let databaseUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/frienddb'
 
   // Use mongojs to hook the database to the db variable
   var db = mongojs(databaseUrl, collections)
 
-  mongodb.MongoClient.connect(uri, {useMongoClient: true}, function (err, client) {
+  mongodb.MongoClient.connect(databaseUrl, {useMongoClient: true}, function (err, client) {
     if (err) throw err
-    console.log(uri)
+    console.log(databaseUrl)
     // This makes sure that any errors are logged if mongodb runs into an issue
     db.on('error', function (error) {
       console.log('Database Error:', error)
